@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
 // library
-import TodoList from './components/TodoList';
-import TodoCard from './components/TodoCard';
-
-import './App.css';
+import TodoList from '../components/TodoList';
+import TodoCardsContainer from './TodoCardsContainer';
+import Buttons from '../components/Buttons';
 
 class App extends Component {
   count = 0;
@@ -67,6 +66,7 @@ class App extends Component {
           <h1 className="App-title">to-do</h1>
         </header>
         <div>
+          <TodoCardsContainer />
           <TodoList Cards={cards} />
 
           <main className='TodoManager'>
@@ -76,11 +76,7 @@ class App extends Component {
                     <br />
                     Content<input id={"todoContent"}></input>
                 </div>
-                <button onClick={this.createCard}>Create Todo</button>
-                <button onClick={this.readCard}>Read Todo</button>
-                <button onClick={this.updateCard}>Update Todo</button>
-                <button onClick={this.deleteCard}>Delete Todo</button>
-                <button onClick={this.finishCard}>Finish Todo</button>
+                <Buttons />
           </main>
         </div>
       </div>
