@@ -1,17 +1,22 @@
 import * as types from './ActionTypes';
 
-export const create = () => ({
-    type: types.CREATE,
+export const create = (content) => ({
+		type: types.CREATE,
+		content
 });
 
-export const update = (content) => ({
-    type: types.UPDATE
+export const update = (index, content) => ({
+		type: types.UPDATE,
+		index,
+		content
 });
 
-export const remove = () => ({
-    type: types.REMOVE
+export const remove = (index) => ({
+		type: types.REMOVE,
+		index
 });
 
-export const complete = () => ({
-    type: types.COMPLETE
+export const complete = (index) => ({
+		type: types.COMPLETE,
+		index
 });

@@ -4,16 +4,16 @@ import TodoCardList from '../components/TodoCardList';
 import * as actions from '../actions';
 
 const mapStateToProps = (state) => ({
-    todoCardList: state.todoCardList
+	todoCards: state.todoCards
 })
 
 const mapDispatchToProps = (dispatch) => ({
-    onUpdate: (index) => dispatch(actions.update(index))
+	onUpdate: (index) => dispatch(actions.update(index))
 })
 
 const TodoCardListContainer = connect(
-    mapStateToProps,
-    mapDispatchToProps
+	mapStateToProps,
+	mapDispatchToProps
 )(TodoCardList);
 
 export default TodoCardListContainer;
