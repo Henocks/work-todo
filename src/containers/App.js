@@ -1,87 +1,40 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+
 // library
-import TodoList from '../components/TodoList';
-import TodoCardsContainer from './TodoCardsContainer';
 import Buttons from '../components/Buttons';
+import TodoCardListContainer from './TodoCardListContainer';
+
+import * as actions from '../actions';
+
 
 class App extends Component {
-  count = 0;
-
-  state = {
-    cards: []
-  }
-
-  createCard = () => {
-    const { cards } = this.state;
-   
-    this.setState({
-      cards: cards.concat({
-        id: this.count,
-        isFinished: 0,
-        todoContent: document.getElementById('todoContent').value
-      })
-    });
-
-    this.count++;
-  }
-
-  readCard = () => {
-    const { cards } = this.state;
-    
-    document.getElementById('todoContent').value = cards[cards.findIndex(TodoCard => TodoCard.id === Number(document.getElementById('todoId').value))].todoContent;
-  }
-
-  updateCard = () => {
-    const { cards } = this.state;
-  
-    cards[cards.findIndex(TodoCard => TodoCard.id === Number(document.getElementById('todoId').value))].todoContent = document.getElementById('todoContent').value
-  }
-
-  deleteCard = () => {
-    var id = Number(document.getElementById('todoId').value);
-    console.log(id);
-    const { cards } = this.state;
-    this.setState({
-      cards: cards.filter(TodoCard => TodoCard.id !== id)
-    });
-  }
-
-  finishCard = () => {
-    const { cards } = this.state;
-    cards[
-      cards.findIndex(
-        TodoCard => TodoCard.id === Number(document.getElementById('todoId').value)
-      )].isFinished = 1;
-    this.setState({
-    });
-  }
-
-
   render() {
-    const { input, cards } = this.state;
-
+    const { onCreate, onRemove, onUpdate, onComplete  } = this.props;
+    
     return (
       <div className="App">
         <header className="App-header">
           <h1 className="App-title">to-do</h1>
         </header>
         <div>
-          <TodoCardsContainer />
-          <TodoList Cards={cards} />
-
-          <main className='TodoManager'>
-                <div style={{width:'30%', height:'300px', display:'inline-block', float:'left', border:'1px solid black', margin:'50px'}}>
-                    <h2>TodoManager</h2>
-                    ID<input id={"todoId"}></input>
-                    <br />
-                    Content<input id={"todoContent"}></input>
-                </div>
-                <Buttons />
-          </main>
+          <Buttons 
+            onCreate={onCreate}
+            onRemove={onRemove}
+            onUpdate={onUpdate}
+            onComplete={onComplete}
+          />
         </div>
       </div>
     );
   }
 }
 
-export default App;
+const mapToDispatch = (dispatch) => ({
+  onCreate: () => dispatch(actions.create()),
+  onRemove: () => dispatch(actions.remove()),
+  onUpdate: () => dispatch(actions.update()),
+  onComplete: () => dispatch(actions.complete())
+});
+
+export default connect(null, mapToDispatch)(App);

@@ -1,7 +1,7 @@
 import React from 'react';
 import TodoCard from './TodoCard';
 
-class TodoList extends React.Component{
+class TodoCardList extends React.Component{
    render(){
        const {Cards} = this.props;
        const cardList = Cards.map(
@@ -28,4 +28,4 @@ class TodoList extends React.Component{
    };
 };
 
-export default TodoList;
+export default TodoCardList;
