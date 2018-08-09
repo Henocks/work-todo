@@ -14,7 +14,7 @@ const initialState = {
 function todoCard(state = initialState, action) {
   const { todoCards } = state;
 
-  console.log("reducer worked!");
+  console.log("reducer working!");
   console.log(action);
   console.log(action.type);
 
